@@ -43,10 +43,8 @@ for item in os.listdir(source_folder):
                 q1 = int(len(fileName) / 4)
                 q3 = int(len(fileName) * 3 / 4)
 
-                if len(fileName) > 190:
-                    fileName = (fileName[0:70] + fileName[q1:q1 + 30]
-                                + fileName[mid:mid + 30] + fileName[q3:q3 + 30]
-                                + fileName[-30:])
+                if len(fileName) > 200:
+                    fileName = fileName[:200]
                 print(fileName)
                 os.rename(
                     os.path.join(source_folder, item),
