@@ -1,10 +1,9 @@
 from docx.api import Document
 
 # Open the .docx file
-doc = Document('ski.docx')
+doc = Document('test.docx')
 
 # Create an empty list to store all paragraphs
-fileName = ""
 paraText = ""
 tableText = ""
 # Iterate through each paragraph and append its text to the list
