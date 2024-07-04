@@ -1,7 +1,13 @@
 from docx.api import Document
 import os
+from tkinter import filedialog
+from tkinter import *
 
-source_folder = r'C:\Users\okipr\Documents\Projects\AutoFileName'
+root = Tk()
+root.withdraw()
+source_folder = filedialog.askdirectory()
+
+# source_folder = r'C:\Users\okipr\Documents\Projects\AutoFileName'
 count = 1
 fileName = ""
 for item in os.listdir(source_folder):
@@ -40,13 +46,9 @@ for item in os.listdir(source_folder):
                 # remove double space
                 fileName = ' '.join(fileName.split())
 
-                mid = int(len(fileName) / 2)
-                q1 = int(len(fileName) / 4)
-                q3 = int(len(fileName) * 3 / 4)
-
                 if len(fileName) > 200:
                     fileName = fileName[:200]
-                # print(fileName)
+
                 os.rename(
                     os.path.join(source_folder, item),
                     os.path.join(source_folder, fileName + '.docx')
@@ -61,4 +63,5 @@ for item in os.listdir(source_folder):
                 )
                 count += 1
             except Exception as e:
-                raise Exception(e)
+                print(e)
+                continue
