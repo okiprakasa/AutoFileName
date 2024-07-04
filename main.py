@@ -1,8 +1,9 @@
 from docx.api import Document
 import os
 
-source_folder = r'C:\Users\matra\PycharmProjects\AutoFileName'
-
+source_folder = r'C:\Users\okipr\Documents\Projects\AutoFileName'
+count = 1
+fileName = ""
 for item in os.listdir(source_folder):
     # check if an item is file or not
     if os.path.isfile(os.path.join(source_folder, item)):
@@ -45,12 +46,19 @@ for item in os.listdir(source_folder):
 
                 if len(fileName) > 200:
                     fileName = fileName[:200]
-                print(fileName)
+                # print(fileName)
                 os.rename(
                     os.path.join(source_folder, item),
                     os.path.join(source_folder, fileName + '.docx')
                 )
             except PermissionError:
                 continue
+            except FileExistsError:
+                fileName = fileName + str(count)
+                os.rename(
+                    os.path.join(source_folder, item),
+                    os.path.join(source_folder, fileName + '.docx')
+                )
+                count += 1
             except Exception as e:
                 raise Exception(e)
