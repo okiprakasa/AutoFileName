@@ -67,14 +67,10 @@ for item in os.listdir(source_folder):
                 fileName = filename_cleaner(text)
                 new_path = os.path.join(source_folder, fileName + '.docx')
                 os.rename(item_path, new_path)
-            except PermissionError:
-                continue
             except FileExistsError:
                 os.remove(new_path)
                 os.rename(item_path, new_path)
-            except Exception as e:
-                print(0)
-                print(e)
+            except Exception:
                 continue
         elif item.lower().endswith('.doc'):
             try:
@@ -84,12 +80,8 @@ for item in os.listdir(source_folder):
                 fileName = filename_cleaner(text)
                 new_path = os.path.join(source_folder, fileName + '.docx')
                 os.rename(item_path, new_path)
-            except PermissionError:
-                continue
             except FileExistsError:
                 os.remove(new_path)
                 os.rename(item_path, new_path)
-            except Exception as e:
-                print(1)
-                print(e)
+            except Exception:
                 continue
