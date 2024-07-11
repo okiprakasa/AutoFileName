@@ -46,8 +46,8 @@ for item in os.listdir(source_folder):
                 # remove double space
                 fileName = ' '.join(fileName.split())
 
-                if len(fileName) > 200:
-                    fileName = fileName[:200]
+                if len(fileName) > 250:
+                    fileName = fileName[:250]
 
                 os.rename(
                     os.path.join(source_folder, item),
