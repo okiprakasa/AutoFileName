@@ -28,24 +28,20 @@ def filename_cleaner(target):
 
     # remove double space
     target = ' '.join(target.split())
-
     return target[:225]
 
 
 def save_as_docx(target):
     # Create an object of the Document class
     document = Document()
-
     # Load a Word DOC file
     try:
         document.LoadFromFile(target)
     except:
         document.LoadFromFile(target, FileFormat.Docx, "iso17025")
         # document.RemoveEncryption()
-
     # Save the DOC file to DOCX format
     document.SaveToFile(target+"x", FileFormat.Docx)
-
     # Close the Document object
     document.Close()
 
