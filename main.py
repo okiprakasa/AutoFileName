@@ -31,7 +31,7 @@ for item in os.listdir(source_folder):
                         tableText = tableText + " ".join([cell.text for cell in row.cells])
 
                 # remove forbidden ASCII characters for file name
-                fileName = ((tableText + paraText).replace("\n", " ")
+                fileName = ((paraText + tableText).replace("\n", " ")
                             .replace("/", "").replace("\\", "")
                             .replace("<", "").replace(">", "")
                             .replace(":", "").replace(";", "")
