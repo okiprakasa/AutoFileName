@@ -58,13 +58,14 @@ def read_ms_word(target):
     # Create an object of the Document class
     document = Document()
     x = ""
+    # noinspection PyBroadException
     try:
         if target.lower().endswith(".docx"):
             document.LoadFromFile(target, FileFormat.Docx)
             x = "x"
         else:
             document.LoadFromFile(target, FileFormat.Doc)
-    except:
+    except Exception:
         if target.lower().endswith(".docx"):
             document.LoadFromFile(target, FileFormat.Docx, "iso17025")
             x = "x"
