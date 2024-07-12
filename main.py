@@ -8,7 +8,7 @@ start = time.time()
 root = Tk()
 root.withdraw()
 source_folder = filedialog.askdirectory()
-sorted_folder = r"C:\1"
+sorted_folder = r"C:\Users\okipr\Documents\Sort"
 
 
 def filename_cleaner(target):
@@ -81,6 +81,7 @@ for item in os.listdir(source_folder):
     # check if an item is file or not
     item_path = os.path.join(source_folder, item)
     if os.path.isfile(item_path):
+        # noinspection PyBroadException
         try:
             updated_path = read_ms_word(item_path)
             try:
