@@ -9,6 +9,7 @@ root = Tk()
 root.withdraw()
 source_folder = filedialog.askdirectory()
 start = time.perf_counter()
+counter = 0
 
 
 def filename_cleaner(target):
@@ -88,6 +89,7 @@ for item in os.listdir(source_folder):
     # check if an item is file or not
     item_path = os.path.join(source_folder, item)
     if os.path.isfile(item_path):
+        counter += 1
         try:
             filename = read_ms_word(item_path)
             updated_path = os.path.join(sorted_folder, filename)
@@ -101,4 +103,5 @@ for item in os.listdir(source_folder):
             continue
 
 end = time.perf_counter()
-print(f"Program execution running time: {end - start:0.4f} seconds")
+print(f"Processed files: {counter} files")
+print(f"Processing time: {end - start:0.4f} seconds")
