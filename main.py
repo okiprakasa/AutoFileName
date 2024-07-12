@@ -1,9 +1,10 @@
 from tkinter import *
 from tkinter import filedialog
-
 from spire.doc import *
 from spire.doc.common import *
+import time
 
+start = time.time()
 root = Tk()
 root.withdraw()
 source_folder = filedialog.askdirectory()
@@ -91,3 +92,6 @@ for item in os.listdir(source_folder):
         except Exception as e:
             print(item_path, e)
             continue
+
+end = time.time()
+print("Program execution run time: ", end - start)
