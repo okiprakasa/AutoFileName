@@ -7,7 +7,7 @@ from spire.doc.common import *
 root = Tk()
 root.withdraw()
 source_folder = filedialog.askdirectory()
-sorted_folder = r"C:\Users\matra\Documents\sort"
+sorted_folder = r"C:\1"
 
 
 def filename_cleaner(target):
