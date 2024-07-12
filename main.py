@@ -1,13 +1,14 @@
 from tkinter import *
 from tkinter import filedialog
-
 from spire.doc import *
 from spire.doc.common import *
+import time
 
+sorted_folder = r"C:\1"
 root = Tk()
 root.withdraw()
 source_folder = filedialog.askdirectory()
-sorted_folder = r"C:\1"
+start = time.perf_counter()
 
 
 def filename_cleaner(target):
@@ -98,3 +99,6 @@ for item in os.listdir(source_folder):
         except Exception as e:
             print(item_path, e)
             continue
+
+end = time.perf_counter()
+print(f"Program execution running time: {end - start:0.4f} seconds")
