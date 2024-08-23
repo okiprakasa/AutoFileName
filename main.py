@@ -3,8 +3,14 @@ from tkinter import filedialog
 from spire.doc import *
 from spire.doc.common import *
 import time
+import pandas as pd
 
 sorted_folder = r"C:\1"
+sorted_ksbuki = r"C:\KSBUKI"
+sorted_kabalai = r"C:\Kabalai"
+sorted_kspe = r"C:\KSPE"
+sorted_kstl = r"C:\KSTL"
+sorted_satpel = r"C:\Satpel"
 root = Tk()
 root.withdraw()
 source_folder = filedialog.askdirectory()
@@ -85,14 +91,44 @@ def read_ms_word(target):
     return filename_cleaner(words) + '.doc' + x
 
 
+def read_ms_excel(target):
+    x = ""
+    # noinspection PyBroadException
+    if target.lower().endswith(".xlsx"):
+        x = "x"
+    words = pd.read_excel(target)
+    print(words)
+    return filename_cleaner(words) + '.xls' + x
+
+
 for item in os.listdir(source_folder):
     # check if an item is file or not
     item_path = os.path.join(source_folder, item)
     if os.path.isfile(item_path):
         counter += 1
         try:
-            filename = read_ms_word(item_path)
+            # updated_path = os.path.join(source_folder, item.replace("jl tanjung perak timur no 498  ", "").replace(
+            # ", ", "") .replace("blbc , ", ""))
+            # filename = read_ms_word(item_path)
+            filename = read_ms_excel(item_path)
             updated_path = os.path.join(sorted_folder, filename)
+            # item_path_new = item_path.replace("blbc , ", "")
+            # if "dari kepala spe sifat" in item_path:
+            #     updated_path = os.path.join(sorted_kspe, item)
+            #     os.rename(item_path, updated_path)
+            #     print(item_path)
+            # elif "dari kepala sbuki sifat" in item_path:
+            #     updated_path = os.path.join(sorted_ksbuki, item)
+            #     os.rename(item_path, updated_path)
+            # elif "dari kepala stl sifat" in item_path:
+            #     updated_path = os.path.join(sorted_kstl, item)
+            #     os.rename(item_path, updated_path)
+            # elif "dari kepala blbc sifat" in item_path:
+            #     updated_path = os.path.join(sorted_kabalai, item)
+            #     os.rename(item_path, updated_path)
+            # elif "dari penyelia satuan pelayanan" in item_path:
+            #     updated_path = os.path.join(sorted_satpel, item)
+            #     os.rename(item_path, updated_path)
             try:
                 os.rename(item_path, updated_path)
             except FileExistsError:
