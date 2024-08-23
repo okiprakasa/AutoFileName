@@ -59,8 +59,8 @@ def filename_cleaner(target):
               .replace("sub bagian umum dan kepatuhan internal", "sbuki")
               .replace("pusat kontak layanan", "")
               .replace("1500225", "").replace("surel", "")
-              .replace("bcbpibcustomsgoid", "").replace("nota dinas", "nd")
-              .replace("tanggal", "tgl").replace("dengan", "dgn")
+              .replace("bcbpibcustomsgoid", "").replace("nota dinas", "nd").replace(" NaN ", "")
+              .replace("tanggal", "tgl").replace("dengan", "dgn").replace("  ", " ")
               .replace("ii", "").replace("yth", "").replace("nomor", "no"))
 
     # remove double space
@@ -96,9 +96,14 @@ def read_ms_excel(target):
     # noinspection PyBroadException
     if target.lower().endswith(".xlsx"):
         x = "x"
-    words = pd.read_excel(target)
-    print(words)
-    return filename_cleaner(words) + '.xls' + x
+    cells = pd.read_excel(target)
+    cells.to_string('my_file.txt')
+    with open('my_file.txt') as f:
+        names = f.read()
+
+    # Print the names
+    print(type(names))
+    return filename_cleaner(names) + '.xls' + x
 
 
 for item in os.listdir(source_folder):
